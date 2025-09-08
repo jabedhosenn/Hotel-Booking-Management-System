@@ -19,6 +19,9 @@
     </div>
 
 
+    <!-- Services Section -->
+    <!-- Displaying hotels dynamically from the database -->
+    <!-- Assuming $hotels is passed from the controller -->
     <section class="ftco-section ftco-services">
         <div class="container">
             <div class="row">
@@ -32,7 +35,7 @@
                                 <h3 class="heading">{{ $hotel->name }}</h3>
                                 <p>{{ $hotel->description }}</p>
                                 <p>Location: {{ $hotel->location }}.</p>
-                                <p><a href="rooms.html" class="btn btn-primary">View rooms</a></p>
+                                <p><a href="{{ route('hotels.rooms', $hotel->id) }}" class="btn btn-primary">View rooms</a></p>
                             </div>
                         </div>
                     </div>
@@ -40,7 +43,9 @@
             </div>
         </div>
     </section>
+    <!-- End of Services Section -->
 
+    <!-- Apartment Room Section -->
     <section class="ftco-section bg-light">
         <div class="container-fluid px-md-0">
             <div class="row no-gutters justify-content-center pb-5 mb-3">
@@ -49,110 +54,45 @@
                 </div>
             </div>
             <div class="row no-gutters">
-                <div class="col-lg-6">
-                    <div class="room-wrap d-md-flex">
-                        <a href="#" class="img"
-                            style="background-image: url('{{ asset('assets/images/room-1.jpg') }}');"></a>
-                        <div class="half left-arrow d-flex align-items-center">
-                            <div class="text p-4 p-xl-5 text-center">
-                                <p class="star mb-0"><span class="fa fa-star"></span><span class="fa fa-star"></span><span
+                @foreach ($rooms as $room)
+                    <div class="col-lg-6">
+                        <div class="room-wrap d-md-flex">
+                            <a href="#" class="img"
+                                style="background-image: url('{{ asset('assets/images/' . $room->image) }}');"></a>
+                            <div class="half left-arrow d-flex align-items-center">
+                                <div class="text p-4 p-xl-5 text-center">
+                                    <p class="star mb-0"><span class="fa fa-star"></span><span
                                         class="fa fa-star"></span><span class="fa fa-star"></span><span
-                                        class="fa fa-star"></span></p>
-                                <!-- <p class="mb-0"><span class="price mr-1">$120.00</span> <span class="per">per night</span></p> -->
-                                <h3 class="mb-3"><a href="rooms.html">Suite Room</a></h3>
-                                <ul class="list-accomodation">
-                                    <li><span>Max:</span> 3 Persons</li>
-                                    <li><span>Size:</span> 45 m2</li>
-                                    <li><span>View:</span> Sea View</li>
-                                    <li><span>Bed:</span> 1</li>
-                                </ul>
-                                <p class="pt-1"><a href="room-single.html" class="btn-custom px-3 py-2">View Room Details
-                                        <span class="icon-long-arrow-right"></span></a></p>
+                                        class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span></p>
+                                    <p class="mb-0"><span class="price mr-1">${{ $room->price }}</span> <span class="per">per night</span></p>
+                                    <h3 class="mb-3"><a href="rooms.html">{{ $room->name }}</a></h3>
+                                    <ul class="list-accomodation">
+                                        <li><span>Max:</span> {{ $room->max_guests }} Persons</li>
+                                        <li><span>Size:</span> {{ $room->size }} m2</li>
+                                        <li><span>View:</span> {{ $room->view }}</li>
+                                        <li><span>Bed:</span> {{ $room->beds }}</li>
+                                        {{-- <li><span>Price:</span> {{ $room->price }}</li> --}}
+                                    </ul>
+                                    <p class="pt-1"><a href="room-single.html" class="btn-custom px-3 py-2">View Room
+                                            Details
+                                            <span class="icon-long-arrow-right"></span></a></p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="room-wrap d-md-flex">
-                        <a href="#" class="img"
-                            style="background-image: url('{{ asset('assets/images/room-2.jpg') }}');"></a>
-                        <div class="half left-arrow d-flex align-items-center">
-                            <div class="text p-4 p-xl-5 text-center">
-                                <p class="star mb-0"><span class="fa fa-star"></span><span class="fa fa-star"></span><span
-                                        class="fa fa-star"></span><span class="fa fa-star"></span><span
-                                        class="fa fa-star"></span></p>
-                                <!-- <p class="mb-0"><span class="price mr-1">$120.00</span> <span class="per">per night</span></p> -->
-                                <h3 class="mb-3"><a href="rooms.html">Standard Room</a></h3>
-                                <ul class="list-accomodation">
-                                    <li><span>Max:</span> 3 Persons</li>
-                                    <li><span>Size:</span> 45 m2</li>
-                                    <li><span>View:</span> Sea View</li>
-                                    <li><span>Bed:</span> 1</li>
-                                </ul>
-                                <p class="pt-1"><a href="room-single.html" class="btn-custom px-3 py-2">View Room Details
-                                        <span class="icon-long-arrow-right"></span></a></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
 
-                <div class="col-lg-6">
-                    <div class="room-wrap d-md-flex">
-                        <a href="#" class="img order-md-last"
-                            style="background-image: url('{{ asset('assets/images/room-3.jpg') }}');"></a>
-                        <div class="half right-arrow d-flex align-items-center">
-                            <div class="text p-4 p-xl-5 text-center">
-                                <p class="star mb-0"><span class="fa fa-star"></span><span class="fa fa-star"></span><span
-                                        class="fa fa-star"></span><span class="fa fa-star"></span><span
-                                        class="fa fa-star"></span></p>
-                                <!-- <p class="mb-0"><span class="price mr-1">$120.00</span> <span class="per">per night</span></p> -->
-                                <h3 class="mb-3"><a href="rooms.html">Family Room</a></h3>
-                                <ul class="list-accomodation">
-                                    <li><span>Max:</span> 3 Persons</li>
-                                    <li><span>Size:</span> 45 m2</li>
-                                    <li><span>View:</span> Sea View</li>
-                                    <li><span>Bed:</span> 1</li>
-                                </ul>
-                                <p class="pt-1"><a href="room-single.html" class="btn-custom px-3 py-2">View Room
-                                        Details <span class="icon-long-arrow-right"></span></a></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="room-wrap d-md-flex">
-                        <a href="#" class="img order-md-last"
-                            style="background-image: url('{{ asset('assets/images/room-4.jpg') }}');"></a>
-                        <div class="half right-arrow d-flex align-items-center">
-                            <div class="text p-4 p-xl-5 text-center">
-                                <p class="star mb-0"><span class="fa fa-star"></span><span
-                                        class="fa fa-star"></span><span class="fa fa-star"></span><span
-                                        class="fa fa-star"></span><span class="fa fa-star"></span></p>
-                                <!-- <p class="mb-0"><span class="price mr-1">$120.00</span> <span class="per">per night</span></p> -->
-                                <h3 class="mb-3"><a href="rooms.html">Deluxe Room</a></h3>
-                                <ul class="list-accomodation">
-                                    <li><span>Max:</span> 3 Persons</li>
-                                    <li><span>Size:</span> 45 m2</li>
-                                    <li><span>View:</span> Sea View</li>
-                                    <li><span>Bed:</span> 1</li>
-                                </ul>
-                                <p class="pt-1"><a href="room-single.html" class="btn-custom px-3 py-2">View Room
-                                        Details <span class="icon-long-arrow-right"></span></a></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
+    <!-- End of Apartment Room Section -->
 
 
     <section class="ftco-section bg-light">
         <div class="container">
             <div class="row no-gutters">
                 <div class="col-md-6 wrap-about">
-                    <div class="img img-2 mb-4"
-                        style="background-image: url('{{ asset('assets/images/image_2.jpg') }}');">
+                    <div class="img img-2 mb-4" style="background-image: url('{{ asset('assets/images/image_2.jpg') }}');">
                     </div>
                     <h2>The most recommended vacation rental</h2>
                     <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a
