@@ -1,29 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-    {{-- <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    {{ __('You are logged in!') }}
-                </div>
-            </div>
-        </div>
-    </div>
-</div> --}}
-
-
-
-    <div class="hero-wrap js-fullheight" style="margin-top: -25px; background-image: url('{{ asset('assets/images/image_2.jpg') }}');"
+    <div class="hero-wrap js-fullheight"
+        style="margin-top: -25px; background-image: url('{{ asset('assets/images/image_2.jpg') }}');"
         data-stellar-background-ratio="0.5">
         <div class="overlay"></div>
         <div class="container">
@@ -43,42 +22,21 @@
     <section class="ftco-section ftco-services">
         <div class="container">
             <div class="row">
-                <div class="col-md-4 d-flex services align-self-stretch px-4 ftco-animate">
-                    <div class="d-block services-wrap text-center">
-                        <div class="img" style="background-image: url('{{ asset('assets/images/services-1.jpg') }}');"></div>
-                        <div class="media-body py-4 px-3">
-                            <h3 class="heading">Sheraton</h3>
-                            <p>Even the all-powerful Pointing has no control about the blind texts it is an almost
-                                unorthographic.</p>
-                            <p>Location: Cairo.</p>
-                            <p><a href="rooms.html" class="btn btn-primary">View rooms</a></p>
+                @foreach ($hotels as $hotel)
+                    <div class="col-md-4 d-flex services align-self-stretch px-4 ftco-animate">
+                        <div class="d-block services-wrap text-center">
+                            <div class="img"
+                                style="background-image: url('{{ asset('assets/images/' . $hotel->image) }}');">
+                            </div>
+                            <div class="media-body py-4 px-3">
+                                <h3 class="heading">{{ $hotel->name }}</h3>
+                                <p>{{ $hotel->description }}</p>
+                                <p>Location: {{ $hotel->location }}.</p>
+                                <p><a href="rooms.html" class="btn btn-primary">View rooms</a></p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-4 d-flex services align-self-stretch px-4 ftco-animate">
-                    <div class="d-block services-wrap text-center">
-                        <div class="img" style="background-image: url('{{ asset('assets/images/services-2.jpg') }}');"></div>
-                        <div class="media-body py-4 px-3">
-                            <h3 class="heading">The Plaza Hotel</h3>
-                            <p>Even the all-powerful Pointing has no control about the blind texts it is an almost
-                                unorthographic.</p>
-                            <p>Location: New york.</p>
-                            <p><a href="#" class="btn btn-primary">View rooms</a></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 d-flex services align-self-stretch px-4 ftco-animate">
-                    <div class="d-block services-wrap text-center">
-                        <div class="img" style="background-image: url('{{ asset('assets/images/services-2.jpg') }}');"></div>
-                        <div class="media-body py-4 px-3">
-                            <h3 class="heading">The Ritz</h3>
-                            <p>Even the all-powerful Pointing has no control about the blind texts it is an almost
-                                unorthographic.</p>
-                            <p>Location: Paris.</p>
-                            <p><a href="#" class="btn btn-primary">View rooms</a></p>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>
@@ -93,7 +51,8 @@
             <div class="row no-gutters">
                 <div class="col-lg-6">
                     <div class="room-wrap d-md-flex">
-                        <a href="#" class="img" style="background-image: url('{{ asset('assets/images/room-1.jpg') }}');"></a>
+                        <a href="#" class="img"
+                            style="background-image: url('{{ asset('assets/images/room-1.jpg') }}');"></a>
                         <div class="half left-arrow d-flex align-items-center">
                             <div class="text p-4 p-xl-5 text-center">
                                 <p class="star mb-0"><span class="fa fa-star"></span><span class="fa fa-star"></span><span
@@ -115,7 +74,8 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="room-wrap d-md-flex">
-                        <a href="#" class="img" style="background-image: url('{{ asset('assets/images/room-2.jpg') }}');"></a>
+                        <a href="#" class="img"
+                            style="background-image: url('{{ asset('assets/images/room-2.jpg') }}');"></a>
                         <div class="half left-arrow d-flex align-items-center">
                             <div class="text p-4 p-xl-5 text-center">
                                 <p class="star mb-0"><span class="fa fa-star"></span><span class="fa fa-star"></span><span
@@ -138,7 +98,8 @@
 
                 <div class="col-lg-6">
                     <div class="room-wrap d-md-flex">
-                        <a href="#" class="img order-md-last" style="background-image: url('{{ asset('assets/images/room-3.jpg') }}');"></a>
+                        <a href="#" class="img order-md-last"
+                            style="background-image: url('{{ asset('assets/images/room-3.jpg') }}');"></a>
                         <div class="half right-arrow d-flex align-items-center">
                             <div class="text p-4 p-xl-5 text-center">
                                 <p class="star mb-0"><span class="fa fa-star"></span><span class="fa fa-star"></span><span
@@ -190,7 +151,8 @@
         <div class="container">
             <div class="row no-gutters">
                 <div class="col-md-6 wrap-about">
-                    <div class="img img-2 mb-4" style="background-image: url('{{ asset('assets/images/image_2.jpg') }}');">
+                    <div class="img img-2 mb-4"
+                        style="background-image: url('{{ asset('assets/images/image_2.jpg') }}');">
                     </div>
                     <h2>The most recommended vacation rental</h2>
                     <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a
@@ -288,7 +250,8 @@
         </div>
     </section>
 
-    <section class="ftco-intro" style="background-image: url('{{ asset('assets/images/image_2.jpg') }}');" data-stellar-background-ratio="0.5">
+    <section class="ftco-intro" style="background-image: url('{{ asset('assets/images/image_2.jpg') }}');"
+        data-stellar-background-ratio="0.5">
         <div class="overlay"></div>
         <div class="container">
             <div class="row justify-content-center">
